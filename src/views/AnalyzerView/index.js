@@ -10,7 +10,6 @@ import RepoCard from './RepoCard';
 import SummaryCard from './SummaryCard';
 import LoadingState from './LoadingState';
 import Recommendations from './Recommendations';
-import Link from 'next/link';
 import {
   Github,
   Sun,
@@ -34,6 +33,12 @@ export default function AnalyzerView() {
   const [shareUrl, setShareUrl] = useState(null);
   const [copied, setCopied] = useState(false);
   const [skillLevel, setSkillLevel] = useState('all');
+  const DOCS_URL = 'https://webiu-docs.vercel.app/';
+  const REPO_URL = 'https://github.com/Bhav-ikkk/Webiu_Github';
+
+  const openExternal = useCallback((url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }, []);
 
   // Load from URL params on mount
   useEffect(() => {
@@ -172,24 +177,38 @@ export default function AnalyzerView() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => openExternal(REPO_URL)}
+            className="flex items-center gap-3 rounded-md p-1 -m-1 hover:bg-[var(--muted)] transition-colors"
+            aria-label="Open project GitHub repository"
+          >
             <Github className="h-8 w-8" />
             <div>
               <h1 className="font-semibold text-lg leading-tight">Repository Analyzer</h1>
               <p className="text-xs text-[var(--muted-foreground)]">Analyze GitHub repos for GSoC</p>
             </div>
-          </div>
+          </button>
 
           <div className="flex items-center gap-2">
-            <a
-              href="https://webiu-docs.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1.5 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] px-3 py-1.5 rounded-md hover:bg-[var(--muted)] transition-colors"
+            <button
+              type="button"
+              onClick={() => openExternal(DOCS_URL)}
+              className="flex items-center gap-1.5 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] px-3 py-1.5 rounded-md hover:bg-[var(--muted)] transition-colors"
+              aria-label="Open documentation"
             >
               <BookOpen className="h-4 w-4" />
               Docs
-            </a>
+            </button>
+            <button
+              type="button"
+              onClick={() => openExternal(REPO_URL)}
+              className="hidden sm:flex items-center gap-1.5 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] px-3 py-1.5 rounded-md hover:bg-[var(--muted)] transition-colors"
+              aria-label="Open GitHub repository"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </button>
             {rateLimit && (
               <span className={`text-xs px-2 py-1 rounded-md ${
                 rateLimit.remaining < 100 ? 'bg-[var(--warning-muted)] text-[var(--warning)]' : 'bg-[var(--muted)] text-[var(--muted-foreground)]'
@@ -327,7 +346,7 @@ export default function AnalyzerView() {
             Built with Next.js, Octokit & Tailwind CSS
           </p>
           <div className="flex items-center gap-4 text-sm text-[var(--muted-foreground)]">
-            <a href="https://github.com/Bhav-ikkk/Webiu_Github" target="_blank" rel="noopener noreferrer" className="link hover:text-[var(--foreground)]">
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="link hover:text-[var(--foreground)]">
               GitHub
             </a>
             <span>•</span>
