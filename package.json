@@ -1,0 +1,35 @@
+{
+  "name": "gsoc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"next dev\" \"cd docs && npx next dev -p 3001\"",
+    "dev:app": "next dev",
+    "dev:docs": "cd docs && npx next dev -p 3001",
+    "build:docs": "cd docs && npm install && npx next build",
+    "prebuild": "npm run build:docs && rm -rf public/docs && cp -r docs/out public/docs",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.13.6",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.36.0",
+    "lucide-react": "^0.577.0",
+    "next": "16.1.6",
+    "octokit": "^5.0.5",
+    "react": "19.2.3",
+    "react-confetti": "^6.4.0",
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.71.2",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "concurrently": "^9.2.1",
+    "tailwindcss": "^4"
+  }
+}
