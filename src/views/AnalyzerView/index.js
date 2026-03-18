@@ -181,14 +181,15 @@ export default function AnalyzerView() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link
-              href="/docs"
-              prefetch={false}
+            <a
+              href="https://webiu-docs.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-1.5 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] px-3 py-1.5 rounded-md hover:bg-[var(--muted)] transition-colors"
             >
               <BookOpen className="h-4 w-4" />
               Docs
-            </Link>
+            </a>
             {rateLimit && (
               <span className={`text-xs px-2 py-1 rounded-md ${
                 rateLimit.remaining < 100 ? 'bg-[var(--warning-muted)] text-[var(--warning)]' : 'bg-[var(--muted)] text-[var(--muted-foreground)]'
@@ -326,7 +327,7 @@ export default function AnalyzerView() {
             Built with Next.js, Octokit & Tailwind CSS
           </p>
           <div className="flex items-center gap-4 text-sm text-[var(--muted-foreground)]">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="link hover:text-[var(--foreground)]">
+            <a href="https://github.com/Bhav-ikkk/Webiu_Github" target="_blank" rel="noopener noreferrer" className="link hover:text-[var(--foreground)]">
               GitHub
             </a>
             <span>•</span>
