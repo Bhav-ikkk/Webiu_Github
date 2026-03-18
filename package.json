@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"cd docs && npx next dev -p 3001\"",
+    "dev": "concurrently \"next dev\" \"npm run dev:docs\"",
     "dev:app": "next dev",
-    "dev:docs": "cd docs && npx next dev -p 3001",
-    "build:docs": "cd docs && npm install && npx next build",
-    "prebuild": "npm run build:docs && rm -rf public/docs && cp -r docs/out public/docs",
+    "dev:docs": "node scripts/dev-docs.mjs",
+    "build:docs": "node scripts/build-docs.mjs",
+    "prebuild": "node scripts/prebuild.mjs",
     "build": "next build",
     "start": "next start"
   },
